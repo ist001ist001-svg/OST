@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="welcome">
+    <div>
+        <h1>대시보드</h1>
+        <p>IST HOST 봇 관리 시스템</p>
+    </div>
+
+    <div class="avatar">👑</div>
+</div>
+
+<div class="stats">
+
+    <div class="stat-card">
+        <span>등록된 봇</span>
+        <strong>{{ project_count }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>등록 제한</span>
+        <strong>무제한</strong>
+    </div>
+
+</div>
+
+<section class="panel">
+
+    <h2>＋ 새 봇 등록</h2>
+
+    <form method="POST" action="{{ url_for('create_bot') }}">
+
+        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+        <input
+            type="text"
+            name="name"
+            placeholder="봇 프로젝트 이름"
+            maxlength="100"
+            required
+        >
+
+        <button type="submit">봇 만들기</button>
+
+    </form>
+
+</section>
+
+<section class="panel">
+
+    <h2>내 봇 프로젝트</h2>
+
+    {% if projects %}
+
+        {% for project in projects %}
+
+        <div class="project-card">
+
+            <div class="project-info">
+                <h3>🤖 {{ project.name }}</h3>
+                <span class="status">{{ project.status }}</span>
+            </div>
+
+            <div class="project-actions">
+
+                <a class="button-link"
+                   href="{{ url_for('files', project_id=project.id) }}">
+                    파일 관리
+                </a>
+
+                <a class="button-link"
+                   href="{{ url_for('check_code', project_id=project.id) }}">
+                    코드 검사
+                </a>
+
+                <form method="POST"
+                      action="{{ url_for('bot_action', project_id=project.id, action='start') }}">
+                    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+                    <button type="submit">시작</button>
+                </form>
+
+                <form method="POST"
+                      action="{{ url_for('bot_action', project_id=project.id, action='stop') }}">
+                    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+                    <button type="submit" class="secondary">중지</button>
+                </form>
+
+                <form method="POST"
+                      action="{{ url_for('delete_bot', project_id=project.id) }}"
+                      onsubmit="return confirm('정말 삭제할까요?');">
+                    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+                    <button type="submit" class="danger">삭제</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+            아직 등록된 봇이 없습니다.
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
