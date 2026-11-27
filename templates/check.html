@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>🔍 코드 검사</h1>
+<p>{{ project.name }}</p>
+
+<section class="panel">
+
+    {% if results %}
+
+        {% for result in results %}
+
+        <div class="check-row">
+
+            <strong>{{ result.file }}</strong>
+
+            {% if result.status == "success" %}
+                <span class="success">정상</span>
+            {% else %}
+                <span class="error">오류</span>
+            {% endif %}
+
+            <p>{{ result.message }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p class="empty">검사할 파일이 없습니다.</p>
+
+    {% endif %}
+
+</section>
+
+<a class="back-button"
+   href="{{ url_for('files', project_id=project.id) }}">
+    ← 파일 관리
+</a>
+
+{% endblock %}
