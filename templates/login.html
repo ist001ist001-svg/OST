@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="login-box">
+
+    <div class="big-logo">IST HOST</div>
+
+    <h1>관리자 접속</h1>
+    <p>관리자 비밀번호를 입력하세요.</p>
+
+    <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+        <input
+            type="password"
+            name="password"
+            placeholder="관리자 비밀번호"
+            required
+        >
+
+        <button type="submit" class="full-button">
+            접속하기
+        </button>
+    </form>
+
+    <div class="features">
+        <div>📁 파일 관리자</div>
+        <div>🤖 봇 프로젝트 무제한 등록</div>
+        <div>📦 ZIP 업로드</div>
+        <div>🔗 GitHub 가져오기</div>
+    </div>
+
+</section>
+
+{% endblock %}
