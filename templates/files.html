@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>📁 파일 관리자</h1>
+<p>{{ project.name }}</p>
+
+<section class="panel">
+
+    <h2>파일 목록</h2>
+
+    {% for file in files %}
+
+    <div class="file-row">
+
+        <span>📄 {{ file.name }}</span>
+
+        <span class="file-size">{{ file.size }} bytes</span>
+
+        <a href="{{ url_for('edit_file', project_id=project.id, file=file.name) }}">
+            편집
+        </a>
+
+        <form method="POST"
+              action="{{ url_for('delete_file', project_id=project.id) }}"
+              onsubmit="return confirm('삭제할까요?');">
+
+            <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+            <input type="hidden" name="filename" value="{{ file.name }}">
+
+            <button class="danger" type="submit">삭제</button>
+
+        </form>
+
+    </div>
+
+    {% else %}
+
+    <p class="empty">파일이 없습니다.</p>
+
+    {% endfor %}
+
+</section>
+
+<section class="panel">
+
+    <h2>새 파일 만들기</h2>
+
+    <form method="POST"
+          action="{{ url_for('new_file', project_id=project.id) }}">
+
+        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+        <input
+            name="filename"
+            placeholder="예: main.py 또는 config/settings.json"
+            required
+        >
+
+        <button type="submit">파일 생성</button>
+
+    </form>
+
+</section>
+
+<section class="panel">
+
+    <h2>ZIP 프로젝트 업로드</h2>
+
+    <form method="POST"
+          enctype="multipart/form-data"
+          action="{{ url_for('upload_zip', project_id=project.id) }}">
+
+        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+        <input type="file" name="file" accept=".zip" required>
+
+        <button type="submit">ZIP 업로드</button>
+
+    </form>
+
+</section>
+
+<section class="panel">
+
+    <h2>GitHub 저장소 가져오기</h2>
+
+    <form method="POST"
+          action="{{ url_for('import_github', project_id=project.id) }}">
+
+        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+        <input
+            type="url"
+            name="repo_url"
+            placeholder="https://github.com/사용자/저장소"
+            required
+        >
+
+        <button type="submit">GitHub 가져오기</button>
+
+    </form>
+
+</section>
+
+<a class="back-button" href="{{ url_for('dashboard') }}">
+    ← 대시보드
+</a>
+
+{% endblock %}
