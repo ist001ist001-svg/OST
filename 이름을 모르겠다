@@ -1,0 +1,313 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #09090f;
+    color: #eeeeF5;
+    font-family: Arial, "Noto Sans KR", sans-serif;
+}
+
+a {
+    color: #b69aff;
+    text-decoration: none;
+}
+
+.topbar {
+    min-height: 65px;
+    padding: 12px 7%;
+    background: #11111b;
+    border-bottom: 1px solid #29243d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #a987ff;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav form {
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto;
+    min-height: 75vh;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 19px;
+}
+
+p {
+    color: #aaaaba;
+    line-height: 1.6;
+}
+
+.login-box {
+    max-width: 480px;
+    margin: 70px auto;
+    padding: 35px 25px;
+    text-align: center;
+    background: #12121e;
+    border: 1px solid #30264d;
+    border-radius: 18px;
+}
+
+.big-logo {
+    color: #a987ff;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.features {
+    display: grid;
+    gap: 13px;
+    margin-top: 30px;
+    text-align: left;
+    color: #c6bddf;
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.avatar {
+    font-size: 35px;
+    background: #1c1830;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.stat-card {
+    background: #151521;
+    padding: 22px;
+    border: 1px solid #29243d;
+    border-radius: 12px;
+}
+
+.stat-card span {
+    display: block;
+    color: #aaaaba;
+    margin-bottom: 10px;
+}
+
+.stat-card strong {
+    color: #b69aff;
+    font-size: 25px;
+}
+
+.panel {
+    background: #12121e;
+    border: 1px solid #29243d;
+    border-radius: 13px;
+    padding: 22px;
+    margin: 20px 0;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    background: #09090f;
+    border: 1px solid #38334d;
+    border-radius: 7px;
+    color: white;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #9870ff;
+}
+
+textarea {
+    min-height: 420px;
+    font-family: monospace;
+    font-size: 14px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+button,
+.button-link {
+    display: inline-block;
+    padding: 10px 16px;
+    background: #7950d9;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover,
+.button-link:hover {
+    background: #916aff;
+}
+
+.full-button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.secondary {
+    background: #45445b;
+}
+
+.danger {
+    background: #a83e55;
+}
+
+.logout-button {
+    background: #45445b;
+}
+
+.project-card {
+    background: #191927;
+    border: 1px solid #302b43;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 12px 0;
+}
+
+.project-card h3 {
+    margin-top: 0;
+}
+
+.status {
+    color: #aaaaba;
+    font-size: 13px;
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.project-actions form {
+    margin: 0;
+}
+
+.file-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid #29243d;
+    overflow-wrap: anywhere;
+}
+
+.file-row form {
+    margin: 0;
+}
+
+.file-size {
+    color: #85859b;
+    font-size: 12px;
+}
+
+.check-row {
+    padding: 15px 0;
+    border-bottom: 1px solid #29243d;
+}
+
+.success {
+    color: #50d99b;
+    margin-left: 10px;
+}
+
+.error {
+    color: #ff657c;
+    margin-left: 10px;
+}
+
+.notice {
+    padding: 13px;
+    margin-bottom: 15px;
+    background: #27203d;
+    border: 1px solid #6246a0;
+    border-radius: 8px;
+}
+
+.empty {
+    text-align: center;
+    padding: 25px;
+}
+
+.back-button {
+    display: inline-block;
+    margin: 15px 0;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+    color: #77778b;
+    border-top: 1px solid #29243d;
+}
+
+@media (max-width: 600px) {
+    .topbar {
+        padding: 12px 5%;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .file-row {
+        flex-wrap: wrap;
+    }
+
+    .project-actions {
+        gap: 6px;
+    }
+
+    .login-box {
+        margin: 35px auto;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .big-logo {
+        font-size: 33px;
+    }
+}
